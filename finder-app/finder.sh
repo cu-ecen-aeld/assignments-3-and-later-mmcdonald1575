@@ -32,5 +32,6 @@ fi
 numFiles=$(ls ${filesdir} | wc -l)
 linesFound=$(grep -r "${searchstr}" "${filesdir}" | wc -l)
 
-echo "# of Files: ${numFiles} | # of Matching Lines: ${linesFound}"
+#echo "# of Files: ${numFiles} | # of Matching Lines: ${linesFound}"
+echo "The number of files are ${numFiles} and the number of matching lines are ${linesFound}"
 exit 0
