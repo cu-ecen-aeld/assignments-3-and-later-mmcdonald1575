@@ -2,24 +2,29 @@
 
 filesdir=$1
 searchstr=$2
+if [ $# != 2 ]
+then
+	echo "FAILURE: TWO PARAMETERS NOT PASSED"
+	exit 1
+fi
 
-if [ -d "${filesdir}" ]
+if [ ! -d "${filesdir}" ]
 then
 	echo "FAILURE: DIRECTORY DOES NOT EXIST"
 	exit 1
 fi
 
-if [ -z "${filesdir}" ]
-then
-	echo "INVALID INPUT PARAMETER"
-	exit 1
-fi
+#if [ -z "${filesdir}" ]
+#then
+#	echo "INVALID INPUT PARAMETER"
+#	exit 1
+#fi
 
-if [ -z "${searchstr}" ]
-then
-	echo "INVALID INPUT PARAMETER"
-	exit 1
-fi
+#if [ -z "${searchstr}" ]
+#then
+#	echo "INVALID INPUT PARAMETER"
+#	exit 1
+#fi
 
 
 #numFiles=$(grep -r $filesdir | wc -l)
