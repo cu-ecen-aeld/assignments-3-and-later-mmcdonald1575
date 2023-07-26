@@ -3,17 +3,23 @@
 writefile="$1"
 writestr="$2"
 
-# Check if writefile argument is provided
-if [ -z "$writefile" ]; then
-  echo "Error: File path not specified."
-  exit 1
+if [ $# != 2 ]
+then
+	echo "FAILURE: TWO PARAMETERS NOT PASSED"
+	exit 1
 fi
 
+# Check if writefile argument is provided
+#if [ -z "$writefile" ]; then
+#  echo "Error: File path not specified."
+#  exit 1
+#fi
+
 # Check if writestr argument is provided
-if [ -z "$writestr" ]; then
-  echo "Error: Text to write not specified."
-  exit 1
-fi
+#if [ -z "$writestr" ]; then
+#  echo "Error: Text to write not specified."
+#  exit 1
+#fi
 
 # Create the directory path if it doesn't exist
 dirpath=$(dirname "$writefile")
