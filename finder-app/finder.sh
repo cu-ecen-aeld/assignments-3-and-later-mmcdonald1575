@@ -24,7 +24,7 @@ fi
 
 #numFiles=$(grep -r $filesdir | wc -l)
 #numFiles=$(find "${filesdire}" -type f | wc -l)
-numFiles=$(ls ${filesdire} | wc -l)
+numFiles=$(ls ${filesdir} | wc -l)
 linesFound=$(grep -r "${searchstr}" "${filesdir}" | wc -l)
 
 echo "# of Files: ${numFiles} | # of Matching Lines: ${linesFound}"
