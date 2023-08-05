@@ -1,25 +1,18 @@
-CC := $(CROSS_COMPILE)gcc
-CFLAGS := -Wall -Wextra
+CROSS_COMPILE=/home/mmcdonald/arm-cross-compiler/bin/aarch64-none-linux-gnu-#aarch64-none-linux-gnu-
 
-ifeq ($(CROSS_COMPILE),)
-    TARGET := writer
-else
-    TARGET := writer_cross
-endif
 
-SRCS := writer.c
-OBJS := $(SRCS:.c=.o)
+all: writer
 
-.PHONY: all clean
+writer: writer.o
+	@if [ -z "$(CROSS_COMPILE)" ];\
+	then\
+		gcc -o writer writer.o;\
+	else\
+		"$(CROSS_COMPILE)"gcc -o writer writer.o;\
+	fi;\
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+writer.o: writer.c
+	@"$(CROSS_COMPILE)"gcc -c writer.c
 
 clean:
-	rm -f $(TARGET) $(OBJS)
-
+	@rm writer writer.o
