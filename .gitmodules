@@ -2,6 +2,3 @@
 	path = assignment-autotest
 	url = https://github.com/cu-ecen-aeld/assignment-autotest.git
 
-[submodule "linux"]
-	path = linux
-	url = https://github.com/ThrowTheSwitch/linux.git
