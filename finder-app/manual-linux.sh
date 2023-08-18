@@ -11,9 +11,9 @@ KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.gi
 #KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 KERNEL_VERSION=v5.1.10
 BUSYBOX_VERSION=1_33_1
-FINDER_APP_DIR=$(realpath $(dirname $0))
+FINDER_APP_DIR=/home/mmcdonald/assignment-1-mmcdonald1575/finder-app
 ARCH=arm64
-CROSS_COMPILE=aarch64-none-linux-gnu-
+CROSS_COMPILE=/home/mmcdonald/arm-cross-compiler/bin/aarch64-none-linux-gnu- #aarch64-none-linux-gnu-
 
 if [ $# -lt 1 ]
 then
@@ -141,10 +141,10 @@ echo "Making device nodes a success"
 
 # TODO: Clean and build the writer utility
 echo "Making writer utility"
-#cd /home/aaron/Desktop/assignment-3-part-2-aaronaprati/finder-app
+
 cd ${FINDER_APP_DIR}
-make clean CROSS_COMPILE=${CROSS_COMPILE}
-make CROSS_COMPILE=${CROSS_COMPILE}
+make clean
+make 
 echo "Made writer utility"
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
@@ -154,22 +154,22 @@ mkdir -p ${OUTDIR}/rootfs
 mkdir -p ${OUTDIR}/rootfs/home/conf
 
 #echo "Copying finder-app/conf lets see if it works" 
-#cp -R /home/aaron/Desktop/assignment-2-aaronaprati/finder-app/conf ${OUTDIR}/rootfs/home/conf
+#cp -R /home/mmcdonald/assignment-1-mmcdonald1575/finder-app/conf ${OUTDIR}/rootfs/home/conf
 echo "Copying finder-app/conf lets see if it works" 
 
-#cp /home/aaron/Desktop/assignment-2-aaronaprati/finder-app/writer.sh ${OUTDIR}/rootfs/home
+#cp /home/mmcdonald/assignment-1-mmcdonald1575/finder-app/writer.sh ${OUTDIR}/rootfs/home
 cp ${FINDER_APP_DIR}/writer.sh ${OUTDIR}/rootfs/home
 
-#cp /home/aaron/Desktop/assignment-2-aaronaprati/finder-app/finder*.sh ${OUTDIR}/rootfs/home
+#cp /home/mmcdonald/assignment-1-mmcdonald1575/finder-app/finder*.sh ${OUTDIR}/rootfs/home
 cp ${FINDER_APP_DIR}/finder*.sh ${OUTDIR}/rootfs/home
 
-#cp /home/aaron/Desktop/assignment-2-aaronaprati/finder-app/conf/username.txt ${OUTDIR}/rootfs/home/conf
+#cp /home/mmcdonald/assignment-1-mmcdonald1575/finder-app/conf/username.txt ${OUTDIR}/rootfs/home/conf
 cp ${FINDER_APP_DIR}/../conf/username.txt ${OUTDIR}/rootfs/home/conf
 
-#cp /home/aaron/Desktop/assignment-2-aaronaprati/finder-app/conf/assignment.txt ${OUTDIR}/rootfs/home/conf
+#cp /home/mmcdonald/assignment-1-mmcdonald1575/finder-app/conf/assignment.txt ${OUTDIR}/rootfs/home/conf
 cp ${FINDER_APP_DIR}/../conf/assignment.txt ${OUTDIR}/rootfs/home/conf
 
-#cp /home/aaron/Desktop/assignment-3-part-2-aaronaprati/finder-app/autorun-qemu.sh ${OUTDIR}/rootfs/home
+#cp /home/mmcdonald/assignment-1-mmcdonald1575/finder-app/autorun-qemu.sh ${OUTDIR}/rootfs/home
 cp ${FINDER_APP_DIR}/autorun-qemu.sh ${OUTDIR}/rootfs/home
 
 echo "Done copying finder stuff"
@@ -181,9 +181,6 @@ echo "Done with owner thing"
 
 # TODO: Create initramfs.cpio.gz
 cd "$OUTDIR/rootfs"
-
-
-#adding comment for new commit
 pwd
 find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
 gzip -f ${OUTDIR}/initramfs.cpio
